@@ -1,32 +1,33 @@
 name: Daily Elimuhub Trend Post
 
 on:
+  workflow_dispatch:
   schedule:
-    - cron: "0 6 * * *"  # Every day at 6:00 AM UTC
-  workflow_dispatch:  # Allows manual trigger
+    - cron: '0 6 * * *'  # 6AM UTC daily
 
 jobs:
   generate-and-publish:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: 🐍 Set up Python
+      - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: 📦 Install dependencies
+      - name: Install dependencies
         run: |
-          pip install openai pytrends
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: 🔐 Set environment variables
+      - name: Run main script
+        env:
+          OPENAI_API_KEY: ${{ secrets.ELIMUHUB_TRENDS_BOT}}
+          BLOGGER_CLIENT_ID: ${{ secrets.BLOGGER_CLIENT_ID }}
+          BLOGGER_CLIENT_SECRET: ${{ secrets.BLOGGER_CLIENT_SECRET }}
+          BLOGGER_REFRESH_TOKEN: ${{ secrets.BLOGGER_REFRESH_TOKEN }}
         run: |
-          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
-          echo "BLOGGER_API_KEY=${{ secrets.BLOGGER_API_KEY }}" >> $GITHUB_ENV
-          echo "BLOGGER_BLOG_ID=${{ secrets.BLOGGER_BLOG_ID }}" >> $GITHUB_ENV
-
-      - name: 🚀 Run Elimuhub AI Bot
-        run: python main.py
+          python main.py
