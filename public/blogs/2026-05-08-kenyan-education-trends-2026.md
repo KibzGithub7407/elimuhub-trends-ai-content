@@ -134,7 +134,7 @@ Interested in a personalized tuition package or career guidance tailored to your
 
 **Contact ElimuHub Education Consultants:**
 - 📧 Email: elimuhubconsultant@gmail.com
-- 🌐 Website: [Coming Soon]
+- 🌐 Website: [Elimuhub Education Consultants](https://elimuhub.simdif.com)
 - 💼 Services: University Placement Guidance | Career Counseling | Scholarship Assistance | Study Abroad Planning
 
 Let us help you achieve your educational dreams with proven strategies and expert guidance!
